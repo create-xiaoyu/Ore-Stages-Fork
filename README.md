@@ -19,7 +19,7 @@
 4. Start your server/client as normal
 
 ## 🚀 Setup
-This mod uses CraftTweaker for configuration - same as original!
+This mod uses CraftTweaker for configuration
 
 ```zenscript
 // Example script (unchanged from original)
@@ -28,14 +28,14 @@ mods.orestages.OreStages.addReplacementById("two", "minecraft:wheat:*", "minecra
 mods.orestages.OreStages.addReplacement("three", <minecraft:obsidian>, <minecraft:cobblestone>);
 ```
 
-## 📝 What Happens When Staged? (Same as Original)
+## 📝 What Happens When Staged?
 If a player does not have the right stage for the block:
 - The block will look like its replacement
 - The player cannot right-click the block
 - Drops replacement block's items
 - Mining time matches the replacement block
 
-## 🔧 CraftTweaker Methods (Unchanged)
+## 🔧 CraftTweaker Methods
 
 ```zenscript
 // Standard replacements
@@ -60,8 +60,6 @@ cd Ore-Stages
 ## 🙏 Credits
 - **Darkhax**: Original mod author
 - **The One Probe-CE Mods Team**: Assistance with compatibility fixes
-- **GameStages Team**: API improvements
-- **Community Contributors**: Bug reports and testing
 
 ## 💬 Support
 For issues with **this fork**, please [open an issue](https://github.com/create-xiaoyu/Ore-Stages-Fork/issues).  
