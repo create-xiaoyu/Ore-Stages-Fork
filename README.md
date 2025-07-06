@@ -59,7 +59,7 @@ cd Ore-Stages
 
 ## 🙏 Credits
 - **Darkhax**: Original mod author
-- **The One Probe Team**: Assistance with compatibility fixes
+- **The One Probe-CE Mods Team**: Assistance with compatibility fixes
 - **GameStages Team**: API improvements
 - **Community Contributors**: Bug reports and testing
 
