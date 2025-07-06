@@ -65,7 +65,7 @@ public class TOPCompatibility implements Function<ITheOneProbe, Void> {
     public Void apply(ITheOneProbe theOneProbe) {
         theOneProbe.registerBlockDisplayOverride((mode, probeInfo, player, world, blockState, data) -> {
             Tuple<String, IBlockState> stageInfo = OreTiersAPI.getStageInfo(blockState);
-            if (stageInfo != null && !GameStageHelper.clientHasStage(PlayerUtils.getClientPlayer(), stageInfo.getFirst())) {
+            if (stageInfo != null && player != null && !GameStageHelper.clientHasStage(player, stageInfo.getFirst())) {
                 IBlockState stageBlockState = stageInfo.getSecond();
                 DefaultProbeInfoProvider.showStandardBlockInfo(
                         Config.getRealConfig(),
