@@ -36,5 +36,5 @@ jobs:
     - name: Upload Files
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: Ore-Stages-Actions-"$GITHUB_RUN_NUMBER"
+        name: Ore-Stages-Actions-${{ github.run_number }}
         path: build/libs/*.jar
