@@ -6,16 +6,12 @@ import net.darkhax.bookshelf.util.PlayerUtils;
 import net.darkhax.bookshelf.util.RenderUtils;
 import net.darkhax.gamestages.GameStageHelper;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * This model is used to wrap existing/vanilla models with stage aware models.
@@ -54,11 +50,9 @@ public class BakedModelTiered implements IBakedModel {
      *
      * @return The correct model to use.
      */
-    @SideOnly(Side.CLIENT)
     private IBakedModel getCorrectModel () {
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        return player != null && GameStageHelper.clientHasStage(player, this.stage)
-                ? this.originalModel : this.replacementModel;
+        
+        return PlayerUtils.getClientPlayer() != null && GameStageHelper.clientHasStage(PlayerUtils.getClientPlayer(), this.stage) ? this.originalModel : this.replacementModel;
     }
     
     public IBakedModel getOriginal () {

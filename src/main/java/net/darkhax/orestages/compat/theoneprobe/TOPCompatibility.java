@@ -6,7 +6,6 @@ import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.ITheOneProbe;
 import mcjty.theoneprobe.apiimpl.providers.DefaultProbeInfoProvider;
 import mcjty.theoneprobe.config.Config;
-import net.darkhax.bookshelf.util.PlayerUtils;
 import net.darkhax.gamestages.GameStageHelper;
 import net.darkhax.orestages.api.OreTiersAPI;
 import net.minecraft.block.state.IBlockState;
@@ -63,9 +62,15 @@ public class TOPCompatibility implements Function<ITheOneProbe, Void> {
 
     @Override
     public Void apply(ITheOneProbe theOneProbe) {
-        theOneProbe.registerBlockDisplayOverride((mode, probeInfo, player, world, blockState, data) -> {
+        theOneProbe.registerBlockDisplayOverride((mode, probeInfo, contextPlayer, world, blockState, data) -> {
             Tuple<String, IBlockState> stageInfo = OreTiersAPI.getStageInfo(blockState);
-            if (stageInfo != null && player != null && !GameStageHelper.clientHasStage(player, stageInfo.getFirst())) {
+
+            // Fix
+            // Fix: Use contextPlayer instead of getClientPlayer()
+            // Fix: Use hasStage() instead of deprecated clientHasStage()
+            if (stageInfo != null && contextPlayer != null &&
+                    !GameStageHelper.hasStage(contextPlayer, stageInfo.getFirst())) {
+
                 IBlockState stageBlockState = stageInfo.getSecond();
                 DefaultProbeInfoProvider.showStandardBlockInfo(
                         Config.getRealConfig(),
@@ -75,8 +80,8 @@ public class TOPCompatibility implements Function<ITheOneProbe, Void> {
                         stageBlockState.getBlock(),
                         world,
                         data.getPos(),
-                        player,
-                        new ProbeHitDataWrapper(data, stageBlockState, world, player)
+                        contextPlayer,
+                        new ProbeHitDataWrapper(data, stageBlockState, world, contextPlayer)
                 );
                 return true;
             }
