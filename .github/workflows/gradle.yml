@@ -30,3 +30,5 @@ jobs:
 
     - name: Build Mods
       run: ./gradlew build
+      env:
+        GITHUB_RUN_NUMBER: ${{ github.run_number }}
