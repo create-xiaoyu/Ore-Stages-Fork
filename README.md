@@ -1,48 +1,78 @@
-# Ore Stages [![](http://cf.way2muchnoise.eu/290201.svg)](https://minecraft.curseforge.com/projects/290201) [![](http://cf.way2muchnoise.eu/versions/290201.svg)](https://minecraft.curseforge.com/projects/290201)
+# Ore Stages (Fixed Fork) [![](http://cf.way2muchnoise.eu/290201.svg)](https://minecraft.curseforge.com/projects/290201) [![](http://cf.way2muchnoise.eu/versions/290201.svg)](https://minecraft.curseforge.com/projects/290201)
 
-This mod is an addon for the GameStage API. It allows for blocks in the world, like ores, to be put into game stages. You should check out the GameStage API mod's description for more info. To give a brief run down, stages are parts of the progression system set up by the modpack or server. Stages are given to players through a command, which is typically ran by a questing mod, advancement, or even a Command Block.
+**This is a maintained fork of the original Ore Stages mod, with critical compatibility fixes for modern Minecraft 1.12.2 modpacks.**
 
-[![Nodecraft](https://i.imgur.com/sz9PUmK.png)](https://nodecraft.com/r/darkhax)    
-This project is sponsored by Nodecraft. Use code [Darkhax](https://nodecraft.com/r/darkhax) for 30% off your first month of service!
+> ⚠️ **Important Notice**: The original Ore Stages mod by Darkhax is no longer maintained. This fork provides essential fixes for compatibility issues with The One Probe-CE and The One Probe.
 
-## Setup
-This mod uses CraftTweaker for configuration.
+## 🛠️ Key Fixes in This Fork
 
-## What happens when staged?
-If a player does not have the right stage for the block
-- The block will look like the block it is hidden as. 
-- The player will not be able to right click the block.
-- The block will drop the items it's replacement would drop.
-- The block will take as long to mine as it's replacement.
+### Critical Server Crash Fix
+- **Fixed**: `java.lang.NoSuchMethodError` crashes related to `PlayerUtils.getClientPlayer()`
+- **Cause**: Service thread attempting to access client-only methods
+- **Impact**: Prevents dedicated server crashes when using The One Probe
+- **Solution**: Replaced unsafe client references with server-safe implementations
 
-In situations where no player is present, it will be assumed that there is no stage. This is referred to as defaulting behavior. 
+## 📥 Installation
+1. Download the latest build from [Releases](https://github.com/create-xiaoyu/Ore-Stages-Fork/releases)
+2. **Remove** the original `orestages-*.jar` from your mods folder
+3. Place `orestages-2.1.*.jar` in your mods folder
+4. Start your server/client as normal
 
-## CraftTweaker methods
+## 🚀 Setup
+This mod uses CraftTweaker for configuration - same as original!
 
-This method can be used to replace a block with vanilla stone.
-`mods.orestages.OreStages.addReplacement(String stage, IIngredient original);`
-
-This method can be used to replace a block with another block.
-`mods.orestages.OreStages.addReplacement(String stage, IIngredient original, IItemStack replacement);`
-
-This method can be used to replace a block with another block by specifying exact block ids. The above two methods only work for blocks with items.
-`mods.orestages.OreStages.addReplacementById(String stage, String original, String replacement);`
-
-The following methods are used to add a replacement which do not use the defaulting behavior. Meaning if no player broke the block (water, explosion, machine) the block will break as if it was not hidden. 
-
-`mods.orestages.OreStages.addNonDefaultingReplacement(String stage, IIngredient original);`
-
-`mods.orestages.OreStages.addNonDefaultingReplacement(String stage, IIngredient original, IItemStack replacement);`
-
-`mods.orestages.OreStages.addNonDefaultingReplacementById(String stage, String original, String replacement);`
-
-## Example Script
-```
+```zenscript
+// Example script (unchanged from original)
 mods.orestages.OreStages.addReplacementById("one", "minecraft:potatoes:*", "minecraft:tallgrass:2");
 mods.orestages.OreStages.addReplacementById("two", "minecraft:wheat:*", "minecraft:carrots:3");
-mods.orestages.OreStages.addReplacementById("three", "minecraft:nether_wart:*", "minecraft:beetroots");
-mods.orestages.OreStages.addReplacement("four", <minecraft:dirt>, <minecraft:stone>);
-mods.orestages.OreStages.addReplacement("one", <minecraft:obsidian>, <minecraft:cobblestone>);
-mods.orestages.OreStages.addNonDefaultingReplacement("one", <minecraft:torch:*>, <minecraft:redstone_torch>);
-mods.orestages.OreStages.addReplacement("five", <minecraft:furnace:*>, <minecraft:stone>);
+mods.orestages.OreStages.addReplacement("three", <minecraft:obsidian>, <minecraft:cobblestone>);
 ```
+
+## 📝 What Happens When Staged? (Same as Original)
+If a player does not have the right stage for the block:
+- The block will look like its replacement
+- The player cannot right-click the block
+- Drops replacement block's items
+- Mining time matches the replacement block
+
+## 🔧 CraftTweaker Methods (Unchanged)
+
+```zenscript
+// Standard replacements
+mods.orestages.OreStages.addReplacement(String stage, IIngredient original);
+mods.orestages.OreStages.addReplacement(String stage, IIngredient original, IItemStack replacement);
+mods.orestages.OreStages.addReplacementById(String stage, String original, String replacement);
+
+// Non-defaulting replacements
+mods.orestages.OreStages.addNonDefaultingReplacement(String stage, IIngredient original);
+mods.orestages.OreStages.addNonDefaultingReplacement(String stage, IIngredient original, IItemStack replacement);
+mods.orestages.OreStages.addNonDefaultingReplacementById(String stage, String original, String replacement);
+```
+
+## 🛠️ Building from Source
+```bash
+git clone https://github.com/create-xiaoyu/Ore-Stages-Fork.git
+cd Ore-Stages
+./gradlew build
+# Output: build/libs/orestages-2.1.x.jar
+```
+
+## 🙏 Credits
+- **Darkhax**: Original mod author
+- **The One Probe Team**: Assistance with compatibility fixes
+- **GameStages Team**: API improvements
+- **Community Contributors**: Bug reports and testing
+
+## 💬 Support
+For issues with **this fork**, please [open an issue](https://github.com/create-xiaoyu/Ore-Stages-Fork/issues).  
+
+---
+
+> **Sponsor Notice**  
+> [![Nodecraft](https://i.imgur.com/sz9PUmK.png)](https://nodecraft.com/r/darkhax)    
+> This project is based on work originally sponsored by Nodecraft.  
+> Use code [Darkhax](https://nodecraft.com/r/darkhax) for 30% off your first month of service!
+
+---
+
+**Disclaimer**: This is an unofficial fork. Not affiliated with or endorsed by Darkhax or the original mod developers.
