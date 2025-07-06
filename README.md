@@ -1,6 +1,6 @@
 # Ore Stages (Fixed Fork) [![](http://cf.way2muchnoise.eu/290201.svg)](https://minecraft.curseforge.com/projects/290201) [![](http://cf.way2muchnoise.eu/versions/290201.svg)](https://minecraft.curseforge.com/projects/290201)
 
-**This is a maintained fork of the original Ore Stages mod, with critical compatibility fixes for modern Minecraft 1.12.2 modpacks.**
+**This is a maintained fork of the original Ore Stages mod, with critical compatibility fixes for Minecraft 1.12.2 modpacks.**
 
 > ⚠️ **Important Notice**: The original Ore Stages mod by Darkhax is no longer maintained. This fork provides essential fixes for compatibility issues with The One Probe-CE and The One Probe.
 
